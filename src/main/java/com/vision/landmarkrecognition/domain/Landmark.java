@@ -10,13 +10,15 @@ import lombok.experimental.FieldDefaults;
 public class Landmark {
     String description;
     LatLng coords;
+    double score;
 
     public Landmark() {
     }
 
-    public Landmark(String description, LatLng coords) {
+    public Landmark(String description, LatLng coords, double score) {
         this.description = description;
         this.coords = coords;
+        this.score = score;
     }
 
 }
