@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Landmark Finder</title>
 </head>
 <body>
-<h1>Landmark Finder</h1>
+<h2>Landmark Finder</h2>
+
+<form action="#" th:action="@{upload}" method="post" enctype="multipart/form-data">
+    <label for="imageFile">Select a image: </label>
+    <input id="imageFile" type="file" accept="image/jpeg,image/png"/>
+    <input type="submit" value="Submit"/>
+</form>
 </body>
 </html>
