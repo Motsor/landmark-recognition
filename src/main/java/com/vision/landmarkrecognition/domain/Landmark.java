@@ -23,6 +23,27 @@ public class Landmark implements Comparable<Landmark> {
 
     @Override
     public int compareTo(Landmark landmark) {
-        return landmark.getScore() - this.score;
+        return landmark.getScore() - score;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+        if (!(o instanceof Landmark)) {
+            return false;
+        }
+
+        return description.equals(((Landmark) o).getDescription());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 17;
+        hash = 31 * hash + description.hashCode();
+        return hash;
+    }
+
 }
