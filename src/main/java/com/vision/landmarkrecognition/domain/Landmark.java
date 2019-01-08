@@ -7,18 +7,22 @@ import lombok.experimental.FieldDefaults;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Landmark {
+public class Landmark implements Comparable<Landmark> {
     String description;
     LatLng coords;
-    double score;
+    int score;
 
     public Landmark() {
     }
 
-    public Landmark(String description, LatLng coords, double score) {
+    public Landmark(String description, LatLng coords, int score) {
         this.description = description;
         this.coords = coords;
         this.score = score;
     }
 
+    @Override
+    public int compareTo(Landmark landmark) {
+        return landmark.getScore() - this.score;
+    }
 }
