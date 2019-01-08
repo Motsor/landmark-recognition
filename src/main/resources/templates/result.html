@@ -3,20 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Landmark Finder | Result</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
 </head>
-<body>
-<h2>Result</h2>
-
-<table>
+<body class="container">
+<header class="jumbotron">
+    <h2>Result</h2>
+</header>
+<table class="table table-hover col-6 offset-3 text-center">
+    <caption>List of found landmarks</caption>
+    <thead class="thead-dark">
     <tr>
         <th>City</th>
-        <th>Score</th>
+        <th>Score (%)</th>
     </tr>
+    </thead>
+    <tbody class="">
     <tr th:each="landmark:${landmarkList}">
         <td th:text="${landmark.description}"></td>
         <td th:text="${landmark.score}"></td>
     </tr>
+    </tbody>
 </table>
+<button id="backButton" class="btn btn-dark offset-3 mt-4">Go Back</button>
 
+<script type="text/javascript" th:src="@{/js/result.js}" src="../static/js/index.js"></script>
 </body>
 </html>
