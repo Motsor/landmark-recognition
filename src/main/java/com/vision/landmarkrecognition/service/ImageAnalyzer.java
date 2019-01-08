@@ -4,21 +4,23 @@ import com.google.cloud.vision.v1.*;
 import com.google.protobuf.ByteString;
 import com.vision.landmarkrecognition.domain.Landmark;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
 public class ImageAnalyzer {
 
-    public List<Landmark> detectLandmark(String filePath) throws IOException {
+    public List<Landmark> detectLandmark(MultipartFile file) throws IOException {
         List<AnnotateImageRequest> requests = new ArrayList<>();
 
         ByteString imgBytes;
-        try (FileInputStream fis = new FileInputStream(filePath)) {
-            imgBytes = ByteString.readFrom(fis);
+        try (InputStream is = file.getInputStream()) {
+            imgBytes = ByteString.readFrom(is);
         }
 
         Image img = Image.newBuilder().setContent(imgBytes).build();
@@ -42,7 +44,7 @@ public class ImageAnalyzer {
 
                     LocationInfo info = annotation.getLocationsList().listIterator().next();
 
-                    landmarkList.add(new Landmark(annotation.getDescription(), info.getLatLng(), annotation.getScore()));
+                    landmarkList.add(new Landmark(annotation.getDescription(), info.getLatLng(), (int) (annotation.getScore() * 100)));
 
                     if (landmarkList.size() == 3) {
                         break;
@@ -50,7 +52,27 @@ public class ImageAnalyzer {
                 }
             }
         }
+        return removeDuplicateAndSort(landmarkList);
+    }
 
+    private List<Landmark> removeDuplicateAndSort(List<Landmark> landmarkList) {
+        int n = landmarkList.size();
+        if (n > 1) {
+            for (int i = 0; i < n; i++) {
+                for (int j = 1; j < n; j++) {
+                    if (landmarkList.get(i).getDescription().equals(landmarkList.get(j).getDescription())) {
+                        if (landmarkList.get(i).getScore() >= landmarkList.get(j).getScore()) {
+                            landmarkList.remove(j);
+                            n--;
+                        } else {
+                            landmarkList.remove(j);
+                        }
+                    }
+                }
+            }
+        }
+
+        Collections.sort(landmarkList);
         return landmarkList;
     }
 }
