@@ -12,7 +12,7 @@ You can test the program by cloning it using the command:</p>
 <li>Set the GOOGLE_APPLICATION_CREDENTIALS to your enviroment variables</li>
 </ul>
 <p>And that's it :)</p>
-<h2>Links<h2>
+<h2>Links</h2>
 <ul>
 <li>https://cloud.google.com/vision/</li>
 <li>https://developers.google.com/resources/api-libraries/documentation/vision/v1/java/latest/</li>
