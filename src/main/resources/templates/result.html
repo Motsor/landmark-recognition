@@ -1,11 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Landmark Finder | Result</title>
 </head>
 <body>
 <h2>Result</h2>
+
+<table>
+    <tr>
+        <th>City</th>
+        <th>Score</th>
+    </tr>
+    <tr th:each="landmark:${landmarkList}">
+        <td th:text="${landmark.description}"></td>
+        <td th:text="${landmark.score}"></td>
+    </tr>
+</table>
 
 </body>
 </html>
