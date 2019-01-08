@@ -7,9 +7,9 @@
 <body>
 <h2>Landmark Finder</h2>
 
-<form action="#" th:action="@{upload}" method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data" th:action="@{/upload}" action="#">
     <label for="imageFile">Select a image: </label>
-    <input id="imageFile" type="file" accept="image/jpeg,image/png"/>
+    <input id="imageFile" type="file" name="file" accept="image/jpeg,image/png" required/>
     <input type="submit" value="Submit"/>
 </form>
 </body>
