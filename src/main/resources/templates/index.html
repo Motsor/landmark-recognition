@@ -3,14 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Landmark Finder</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="../static/css/custom.css" th:href="@{/css/custom.css}"/>
 </head>
-<body>
-<h2>Landmark Finder</h2>
+<body class="container">
+<header class="jumbotron">
+    <h2>Landmark Finder</h2>
+</header>
 
-<form method="post" enctype="multipart/form-data" th:action="@{/upload}" action="#">
-    <label for="imageFile">Select a image: </label>
-    <input id="imageFile" type="file" name="file" accept="image/jpeg,image/png" required/>
-    <input type="submit" value="Submit"/>
+<form class="custom-file" method="post" enctype="multipart/form-data" th:action="@{/upload}" action="#">
+    <div class="col-6 offset-3 mt-4">
+        <input class="custom-file-input" id="imageFile" type="file" name="file" accept="image/jpeg,image/png" required/>
+        <label class="custom-file-label" for="imageFile">Choose a image</label>
+    </div>
+    <input type="submit" value="Submit" class="btn btn-dark col-2 offset-5 mt-4"/>
 </form>
+
+<div class="loader mt-5"></div>
+
+<script type="text/javascript" th:src="@{/js/custom.js}" src="../static/js/custom.js"></script>
 </body>
 </html>
