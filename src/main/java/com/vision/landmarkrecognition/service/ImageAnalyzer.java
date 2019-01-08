@@ -10,12 +10,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 @Service
 public class ImageAnalyzer {
 
-    public List<Landmark> detectLandmark(MultipartFile file) throws IOException {
+    public LinkedHashSet<Landmark> detectLandmark(MultipartFile file) throws IOException {
         List<AnnotateImageRequest> requests = new ArrayList<>();
 
         ByteString imgBytes;
@@ -52,27 +53,9 @@ public class ImageAnalyzer {
                 }
             }
         }
-        return removeDuplicateAndSort(landmarkList);
-    }
-
-    private List<Landmark> removeDuplicateAndSort(List<Landmark> landmarkList) {
-        int n = landmarkList.size();
-        if (n > 1) {
-            for (int i = 0; i < n; i++) {
-                for (int j = 1; j < n; j++) {
-                    if (landmarkList.get(i).getDescription().equals(landmarkList.get(j).getDescription())) {
-                        if (landmarkList.get(i).getScore() >= landmarkList.get(j).getScore()) {
-                            landmarkList.remove(j);
-                            n--;
-                        } else {
-                            landmarkList.remove(j);
-                        }
-                    }
-                }
-            }
-        }
 
         Collections.sort(landmarkList);
-        return landmarkList;
+
+        return new LinkedHashSet<>(landmarkList);
     }
 }
