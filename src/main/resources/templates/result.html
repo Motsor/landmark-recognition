@@ -17,7 +17,7 @@
         <th>Score (%)</th>
     </tr>
     </thead>
-    <tbody class="">
+    <tbody>
     <tr th:each="landmark:${landmarkList}">
         <td th:text="${landmark.description}"></td>
         <td th:text="${landmark.score}"></td>
@@ -26,6 +26,6 @@
 </table>
 <button id="backButton" class="btn btn-dark offset-3 mt-4">Go Back</button>
 
-<script type="text/javascript" th:src="@{/js/result.js}" src="../static/js/index.js"></script>
+<script type="text/javascript" th:src="@{/js/custom.js}" src="../static/js/custom.js"></script>
 </body>
 </html>

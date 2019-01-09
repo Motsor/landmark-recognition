@@ -1,5 +1,6 @@
 var imageFile = document.querySelector("#imageFile");
 var submitButton = document.querySelector('[type="submit"]');
+var backButton = document.querySelector("#backButton");
 
 //gets the filename of the selected file and displays it
 function getFilename() {
@@ -13,5 +14,20 @@ function loader() {
     }
 }
 
-imageFile.addEventListener("change", getFilename);
-submitButton.addEventListener("click", loader);
+//takes back to the previous URL
+function goBack() {
+    console.log("back up");
+    window.history.back();
+}
+
+if (imageFile !== null) {
+    imageFile.addEventListener("change", getFilename);
+}
+
+if (submitButton !== null) {
+    submitButton.addEventListener("click", loader);
+}
+
+if (backButton !== null) {
+    backButton.addEventListener("click", goBack);
+}
