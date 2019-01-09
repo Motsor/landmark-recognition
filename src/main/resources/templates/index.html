@@ -11,12 +11,13 @@
     <h2>Landmark Finder</h2>
 </header>
 
+<img id="targetImg" alt="Selected image file."/>
 <form class="custom-file" method="post" enctype="multipart/form-data" th:action="@{/upload}" action="#">
     <div class="col-6 offset-3 mt-4">
         <input class="custom-file-input" id="imageFile" type="file" name="file" accept="image/jpeg,image/png" required/>
         <label class="custom-file-label" for="imageFile">Choose a image</label>
     </div>
-    <input type="submit" value="Submit" class="btn btn-dark col-2 offset-5 mt-4"/>
+    <input type="submit" value="Submit" class="btn btn-dark col-2 mt-4"/>
 </form>
 
 <div class="loader mt-5"></div>
