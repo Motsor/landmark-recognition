@@ -1,4 +1,5 @@
 var imageFile = document.querySelector("#imageFile");
+var targetImg = document.querySelector("#targetImg");
 var submitButton = document.querySelector('[type="submit"]');
 var backButton = document.querySelector("#backButton");
 
@@ -6,6 +7,22 @@ var backButton = document.querySelector("#backButton");
 function getFilename() {
     document.querySelector('[class="custom-file-label"]').innerHTML = imageFile.value.split("\\").pop();
 }
+
+//display selected image
+function showImage(imageFile, targetImg) {
+    var fr = new FileReader();
+    fr.onload = function (e) {
+        targetImg.src = this.result;
+        targetImg.style.visibility = "visible";
+    };
+    if (imageFile !== null) {
+        imageFile.addEventListener("change", function () {
+            fr.readAsDataURL(imageFile.files[0]);
+        })
+    }
+}
+
+showImage(imageFile, targetImg);
 
 //makes the loader visible
 function loader() {
