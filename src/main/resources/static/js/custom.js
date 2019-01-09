@@ -16,7 +16,6 @@ function loader() {
 
 //takes back to the previous URL
 function goBack() {
-    console.log("back up");
     window.history.back();
 }
 
